@@ -4,7 +4,7 @@ This repository contains the codebase for a research project exploring autonomou
 
 ---
 
-## 🚀 Project Overview
+## Project Overview
 
 This project combines:
 
@@ -14,3 +14,5 @@ This project combines:
 - **Online and Offline training approaches** for performance comparison
 
 The system trains a drone agent to identify and approach target objects in a simulated environment. Performance is assessed based on accumulated rewards and loss reduction during training.
+
+---

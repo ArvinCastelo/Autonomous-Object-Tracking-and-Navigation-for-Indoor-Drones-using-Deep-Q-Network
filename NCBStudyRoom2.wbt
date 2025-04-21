@@ -1,0 +1,288 @@
+#VRML_SIM R2025a utf8
+
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2025a/projects/objects/backgrounds/protos/TexturedBackground.proto"
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2025a/projects/objects/backgrounds/protos/TexturedBackgroundLight.proto"
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2025a/projects/objects/floors/protos/RectangleArena.proto"
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2025a/projects/objects/tables/protos/Desk.proto"
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2025a/projects/objects/chairs/protos/WoodenChair.proto"
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2025a/projects/objects/television/protos/Television.proto"
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2025a/projects/objects/computers/protos/ComputerMouse.proto"
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2025a/projects/objects/toys/protos/RubberDuck.proto"
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2025a/projects/objects/drinks/protos/WaterBottle.proto"
+
+WorldInfo {
+}
+Viewpoint {
+  orientation -0.4255873283094619 -0.5027746628912672 0.7523915631750445 4.594842324895766
+  position -0.5638954707569078 3.406665388726235 6.330760009576933
+  follow "Crazyflie"
+  followType "None"
+}
+TexturedBackground {
+}
+Television {
+  translation 0 2 1.1
+  rotation 0 0 1 -1.5707996938995747
+}
+TexturedBackgroundLight {
+  castShadows FALSE
+}
+RectangleArena {
+  floorSize 4 4
+  wallThickness 0.1
+  wallHeight 2
+}
+Desk {
+  translation 1.0422101633467891e-08 1.0885571615802311e-08 -0.009218381762853722
+  rotation -0.997748059176607 0.06707315940214945 4.119621117650782e-05 3.884748203926155e-06
+  physics Physics {
+  }
+}
+WoodenChair {
+  translation 0.999999455104302 -5.769908451307322e-10 -0.0011436761413539664
+  rotation 0.0005557694702229663 5.908377739533548e-07 0.9999998455599616 3.141592653447836
+  physics Physics {
+  }
+}
+WoodenChair {
+  translation 5.751711933609741e-10 0.9999994550987691 -0.0011436761413625152
+  rotation -0.0005551785486568912 -0.0005563583507022802 -0.9999996911210347 1.5708000029205484
+  name "wooden chair(1)"
+  physics Physics {
+  }
+}
+WoodenChair {
+  translation -1 0 0
+  name "wooden chair(2)"
+}
+WoodenChair {
+  translation -5.788407347298748e-10 -0.9999994550987712 -0.0011436761413631258
+  rotation 0.0005563602201224517 -0.0005551766754155533 0.9999996911210345 1.5708000026366282
+  name "wooden chair(3)"
+  physics Physics {
+  }
+}
+ComputerMouse {
+  translation 1 -0.05 0.48
+  rotation -0.5810913838104782 1.5142777637494056e-06 -0.813838315428151 6.321217635733364e-06
+}
+Robot {
+  translation 0.0012843475931270435 0.05555911352975873 0.7157706189443769
+  rotation -1.1198257286798308e-06 1.6597471629793405e-06 0.9999999999979955 -2.5756750010791607
+  children [
+    DistanceSensor {
+      rotation 0 0 1 1.57
+      name "left_ds"
+    }
+    DistanceSensor {
+      rotation 0 0 1 -1.57
+      name "right_ds"
+    }
+    DistanceSensor {
+      rotation 0 0 1 3.14
+      name "back_ds"
+    }
+    DistanceSensor {
+      name "front_ds"
+    }
+    DEF BODY Pose {
+      translation 0 0 -0.015
+      children [
+        Group {
+        }
+        CadShape {
+          url [
+            "https://raw.githubusercontent.com/cyberbotics/webots/R2025a/projects/robots/bitcraze/crazyflie/protos/meshes/cf2_assembly.dae"
+          ]
+        }
+      ]
+    }
+    DEF MULTIRANGER Pose {
+      translation 0 0 0.01
+      children [
+        DistanceSensor {
+          rotation 0 0 1 -1.57
+          name "range_right"
+          lookupTable [
+            0 0 0
+            2 2000 0
+          ]
+        }
+        DistanceSensor {
+          rotation 0 0 1 3.14
+          name "range_back"
+          lookupTable [
+            0 0 0
+            2 2000 0
+          ]
+        }
+        DistanceSensor {
+          rotation 0 0 1 1.57
+          name "range_left"
+          lookupTable [
+            0 0 0
+            2 2000 0
+          ]
+        }
+        DistanceSensor {
+          name "range_front"
+          lookupTable [
+            0 0 0
+            2 2000 0
+          ]
+        }
+      ]
+    }
+    Camera {
+      translation 0.03 0 0.01
+      fieldOfView 0.87
+      width 324
+      height 324
+    }
+    GPS {
+    }
+    Gyro {
+    }
+    InertialUnit {
+      name "inertial_unit"
+    }
+    DEF M1 Propeller {
+      shaftAxis 0 0 1
+      centerOfThrust 0.031 -0.031 0.008
+      thrustConstants -4e-05 0
+      torqueConstants 2.4e-06 0
+      fastHelixThreshold 50
+      device RotationalMotor {
+        name "m1_motor"
+        maxVelocity 600
+        maxTorque 30
+      }
+      fastHelix Solid {
+        translation 0.031 -0.031 0.008
+        children [
+          DEF FASTHELIX Shape {
+            appearance PBRAppearance {
+              baseColor 0.1 0.1 0.1
+              baseColorMap ImageTexture {
+                url [
+                  "https://raw.githubusercontent.com/cyberbotics/webots/R2025a/projects/default/protos/textures/fast_helix.png"
+                ]
+              }
+              metalness 0
+            }
+            geometry Cylinder {
+              height 0.001
+              radius 0.025
+            }
+          }
+        ]
+      }
+      slowHelix Solid {
+        translation 0.031 -0.031 0.008
+        children [
+          DEF PROP_SHAPE Shape {
+            appearance DEF PLASTIC PBRAppearance {
+              baseColor 0 0 0
+              metalness 0.3
+            }
+            geometry Mesh {
+              url [
+                "https://raw.githubusercontent.com/cyberbotics/webots/R2025a/projects/robots/bitcraze/crazyflie/protos/meshes/ccw_prop.dae"
+              ]
+            }
+          }
+        ]
+      }
+    }
+    DEF M2 Propeller {
+      shaftAxis 0 0 1
+      centerOfThrust -0.031 -0.031 0.008
+      thrustConstants 4e-05 0
+      torqueConstants 2.4e-06 0
+      fastHelixThreshold 50
+      device RotationalMotor {
+        name "m2_motor"
+        maxVelocity 600
+        maxTorque 30
+      }
+      fastHelix Solid {
+        translation -0.031 -0.031 0.008
+        children [
+          USE FASTHELIX
+        ]
+      }
+      slowHelix Solid {
+        translation -0.031 -0.031 0.008
+        children [
+          USE PROP_SHAPE
+        ]
+      }
+    }
+    DEF M3 Propeller {
+      shaftAxis 0 0 1
+      centerOfThrust -0.031 0.031 0.008
+      thrustConstants -4e-05 0
+      torqueConstants 2.4e-06 0
+      fastHelixThreshold 50
+      device RotationalMotor {
+        name "m3_motor"
+        maxVelocity 600
+        maxTorque 30
+      }
+      fastHelix Solid {
+        translation -0.031 0.031 0.008
+        children [
+          USE FASTHELIX
+        ]
+      }
+      slowHelix Solid {
+        translation -0.031 0.031 0.008
+        children [
+          USE PROP_SHAPE
+        ]
+      }
+    }
+    DEF M4 Propeller {
+      shaftAxis 0 0 1
+      centerOfThrust 0.031 0.031 0.008
+      thrustConstants 4e-05 0
+      torqueConstants 2.4e-06 0
+      fastHelixThreshold 50
+      device RotationalMotor {
+        name "m4_motor"
+        maxVelocity 600
+        maxTorque 30
+      }
+      fastHelix Solid {
+        translation 0.031 0.031 0.008
+        children [
+          USE FASTHELIX
+        ]
+      }
+      slowHelix DEF PROP Solid {
+        translation 0.031 0.031 0.007
+        children [
+          USE PROP_SHAPE
+        ]
+      }
+    }
+  ]
+  name "Crazyflie"
+  model "Bitcraze's Crazyflie"
+  boundingObject Cylinder {
+    height 0.03
+    radius 0.05
+  }
+  physics Physics {
+    density -1
+    mass 0.05
+  }
+  controller "datacollection"
+  supervisor TRUE
+}
+RubberDuck {
+  translation -0.3 0.4 0.72
+}
+WaterBottle {
+  translation 0.1 -1 0.48
+}
